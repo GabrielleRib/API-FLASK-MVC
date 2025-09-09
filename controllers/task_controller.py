@@ -43,10 +43,13 @@ class TaskController:
         # TODO buscar a tarefa pelo id
 
         if task_to_update:
-            task_to_update.status = "Concluído" 
+            task_to_update.status =="Pendente":
+                task_to_update.status = "Concluído"
+        else:
+            task_to_update.status = "Pendente"
             db.session.commit
         # TODO: se existir, alternar status entre "Pendente" e "Concluído" e dar commit na alteração
-        pass 
+        
 
         return redirect(url_for("list_tasks"))
 
@@ -58,7 +61,9 @@ class TaskController:
         if task_to_delete:
             db.session.delete(task_to_delete)
             db.session.commit()
+        else:
+            return "Tarefa não encontrada",404
         # TODO: se ela existir, remover do db.session e dar commit
-        pass 
+        
     
         return redirect(url_for("list_tasks"))
