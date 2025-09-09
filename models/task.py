@@ -5,8 +5,9 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(100), nullable=False)
-    #user_id = 
+    user_id = db.Column(db.Integer,db.ForeignKey('users_id'),nullable=False)
     status = db.Column(db.String(100), default="Pendente")
+    user = db.relationship("User",back_populates=tasks)
     #user = User
     # TODO: Define os campos e o relacionamento da tabela Task
     # - id: chave primária da tarefa (OK)
